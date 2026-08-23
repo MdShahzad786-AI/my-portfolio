@@ -1,0 +1,187 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+
+const bentoCategories = [
+  {
+    title: 'AI & MACHINE LEARNING',
+    badge: 'INTELLIGENCE',
+    items: ['SQL', 'Python', 'Statistics', 'Data Visualization', 'AI Automation', 'Machine Learning', 'NLP', 'Generative AI'],
+    description: 'Specialized in training predictive models, executing statistical analysis, and architecting natural language processing (NLP) pipelines.',
+    stat: 'CORE ALGORITHMS',
+    colSpan: 'lg:col-span-7',
+  },
+  {
+    title: 'LIBRARIES & FRAMEWORKS',
+    badge: 'ENGINEERING',
+    items: ['Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'OpenCV', 'Matplotlib', 'Seaborn', 'Hugging Face', 'Streamlit'],
+    description: 'Proficient in numeric computing, gradient boosting classifiers, deep neural nets, and interactive Streamlit web dashboard deployment.',
+    stat: 'DATA STACK',
+    colSpan: 'lg:col-span-5',
+  },
+  {
+    title: 'DEVELOPMENT & COLLABORATION',
+    badge: 'WORKFLOW',
+    items: ['Git & GitHub', 'Claude Code', 'Codex', 'Cursor', 'Antigravity', 'Google Colab', 'Jupyter Notebook', 'Microsoft Office'],
+    description: 'Leveraging next-gen agentic workflows, collaborative source repositories, and cloud notebook environments for rapid model prototyping.',
+    stat: 'MODERN TOOLING',
+    colSpan: 'lg:col-span-5',
+  },
+  {
+    title: 'CLOUD & INFRASTRUCTURE',
+    badge: 'DEPLOYMENT',
+    items: ['AWS', 'GCP', 'Azure', 'Google Firebase'],
+    description: 'Integrating serverless components, managing hosted databases, and utilizing cloud compute instances to deploy ML models at scale.',
+    stat: 'MULTI-CLOUD',
+    colSpan: 'lg:col-span-7',
+  },
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+export const SkillsSection: React.FC = () => {
+  const [, setHoveredIdx] = useState<number | null>(null);
+
+  return (
+    <section
+      id="skills"
+      className="relative w-screen bg-[#000000] text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-24 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center scroll-mt-24"
+    >
+      {/* Ambient Glows */}
+      <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[28rem] h-[28rem] bg-[#8C6D4F]/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        
+        {/* Eyebrow Header */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center space-x-4 mb-7"
+        >
+          <span
+            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            03 / TECH SKILLS
+          </span>
+          <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+        </motion.div>
+
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
+        >
+          <h2
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8DFD8] to-[#8C6D4F] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              AI & ML EXPERTISE.
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5EB] via-[#D4AF37] to-[#100D0B] drop-shadow-[0_8px_25px_rgba(212,175,55,0.35)]">
+              INTELLIGENCE APPLIED.
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Bento Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6"
+        >
+          {bentoCategories.map((block, idx) => (
+            <motion.div
+              key={block.title}
+              variants={cardVariants}
+              onMouseEnter={() => setHoveredIdx(idx)}
+              onMouseLeave={() => setHoveredIdx(null)}
+              whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              className={`${block.colSpan} relative p-8 sm:p-9 rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B]/85 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_16px_45px_rgba(212,175,55,0.14)] cursor-pointer group`}
+            >
+              {/* Top Subtle Border Highlight */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Corner Minimal Pins */}
+              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/40 group-hover:border-[#D4AF37] transition-colors duration-300" />
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/40 group-hover:border-[#D4AF37] transition-colors duration-300" />
+
+              {/* Card Meta Header */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#D4AF37] group-hover:text-[#FFF5EB] transition-colors">
+                  {block.badge}
+                </span>
+                <span className="text-[10px] font-mono px-2.5 py-0.5 border border-[#8C6D4F]/40 text-[#A8988B] bg-[#1A1512] group-hover:border-[#D4AF37]/50 group-hover:text-white transition-all">
+                  {block.stat}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3
+                className="text-3xl sm:text-4xl font-normal tracking-wide text-[#E8DFD8] mb-3 group-hover:text-[#FFF5EB] transition-colors"
+                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+              >
+                {block.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                className="text-xs sm:text-sm text-[#A8988B] font-light leading-relaxed mb-7 max-w-xl group-hover:text-[#E8DFD8] transition-colors"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                {block.description}
+              </p>
+
+              {/* Interactive Tag Chips */}
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-[#8C6D4F]/20">
+                {block.items.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B] text-[#E8DFD8] group-hover:border-[#D4AF37]/50 group-hover:bg-[#1A1512] group-hover:text-white transition-all duration-300"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
+export default SkillsSection;
