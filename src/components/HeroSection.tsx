@@ -3,97 +3,7 @@ import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
 
-const AiInsignia: React.FC = () => {
-  return (
-    <svg
-      width="128"
-      height="128"
-      viewBox="0 0 120 120"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-28 h-28 lg:w-32 lg:h-32 drop-shadow-[0_0_15px_rgba(212,175,55,0.25)]"
-    >
-      <defs>
-        <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#E8DFD8" />
-          <stop offset="50%" stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#8C6D4F" />
-        </linearGradient>
-        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#8C6D4F" stopOpacity="0.2" />
-        </linearGradient>
-      </defs>
 
-      {/* Glowing background */}
-      <circle cx="60" cy="60" r="50" fill="url(#goldGlow)" />
-
-      {/* Rotating dashed outer ring */}
-      <motion.circle
-        cx="60"
-        cy="60"
-        r="48"
-        stroke="url(#goldGrad)"
-        strokeWidth="1"
-        strokeDasharray="4 4"
-        opacity="0.6"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        style={{ transformOrigin: '60px 60px' }}
-      />
-
-      {/* Outer fine solid ring */}
-      <circle cx="60" cy="60" r="52" stroke="url(#goldGrad)" strokeWidth="0.5" opacity="0.3" />
-
-      {/* Inner accent ring */}
-      <circle cx="60" cy="60" r="40" stroke="url(#goldGrad)" strokeWidth="0.5" opacity="0.4" />
-
-      {/* Neural network lines */}
-      <g opacity="0.7">
-        <line x1="35" y1="60" x2="60" y2="35" stroke="url(#lineGrad)" strokeWidth="0.75" />
-        <line x1="35" y1="60" x2="60" y2="85" stroke="url(#lineGrad)" strokeWidth="0.75" />
-        <line x1="60" y1="35" x2="85" y2="60" stroke="url(#lineGrad)" strokeWidth="0.75" />
-        <line x1="60" y1="85" x2="85" y2="60" stroke="url(#lineGrad)" strokeWidth="0.75" />
-
-        <line x1="60" y1="35" x2="60" y2="85" stroke="url(#lineGrad)" strokeWidth="0.5" strokeDasharray="1 2" />
-        <line x1="35" y1="60" x2="85" y2="60" stroke="url(#lineGrad)" strokeWidth="0.5" strokeDasharray="1 2" />
-
-        <line x1="45" y1="45" x2="60" y2="35" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="45" y1="75" x2="60" y2="85" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="75" y1="45" x2="60" y2="35" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="75" y1="75" x2="60" y2="85" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="45" y1="45" x2="35" y2="60" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="45" y1="75" x2="35" y2="60" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="75" y1="45" x2="85" y2="60" stroke="url(#lineGrad)" strokeWidth="0.5" />
-        <line x1="75" y1="75" x2="85" y2="60" stroke="url(#lineGrad)" strokeWidth="0.5" />
-      </g>
-
-      {/* Neural nodes */}
-      <circle cx="60" cy="60" r="4" fill="url(#goldGrad)" />
-      <circle cx="60" cy="60" r="8" stroke="url(#goldGrad)" strokeWidth="0.5" opacity="0.5" />
-
-      <motion.circle cx="35" cy="60" r="3" fill="#FFF5EB" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.circle cx="85" cy="60" r="3" fill="#FFF5EB" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} />
-      <motion.circle cx="60" cy="35" r="3" fill="#FFF5EB" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.75 }} />
-      <motion.circle cx="60" cy="85" r="3" fill="#FFF5EB" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 2.25 }} />
-
-      <circle cx="45" cy="45" r="2" fill="url(#goldGrad)" opacity="0.8" />
-      <circle cx="75" cy="45" r="2" fill="url(#goldGrad)" opacity="0.8" />
-      <circle cx="45" cy="75" r="2" fill="url(#goldGrad)" opacity="0.8" />
-      <circle cx="75" cy="75" r="2" fill="url(#goldGrad)" opacity="0.8" />
-
-      {/* Subtle < > symbol inside center node */}
-      <g opacity="0.85">
-        <path d="M 54 57 L 50 60 L 54 63" stroke="url(#goldGrad)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M 66 57 L 70 60 L 66 63" stroke="url(#goldGrad)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-    </svg>
-  );
-};
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -127,7 +37,11 @@ const navItems = [
   { name: 'CONTACT', href: '#contact' },
 ];
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onOpenChat?: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenChat }) => {
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -228,27 +142,7 @@ export const HeroSection: React.FC = () => {
         {/* Seamless Soft Left Edge Blend */}
         <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#000000] via-[#000000]/85 to-transparent pointer-events-none" />
 
-        {/* ================= 3. ANIMATED WATERMARK EMBLEM ================= */}
-        <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-12 pointer-events-none flex items-center justify-center z-10">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-36 h-36 bg-[#000000]/85 rounded-full blur-xl" />
 
-            <motion.div
-              animate={{
-                y: [-3, 3, -3],
-                scale: [1, 1.03, 1],
-              }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="relative flex items-center justify-center"
-            >
-              <AiInsignia />
-            </motion.div>
-          </div>
-        </div>
       </motion.div>
 
       {/* ================= 4. CONTENT LAYER ================= */}
@@ -280,6 +174,18 @@ export const HeroSection: React.FC = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+            {onOpenChat && (
+              <button
+                onClick={onOpenChat}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="relative group py-1 transition-colors duration-300 text-[#D4AF37] hover:text-white font-medium flex items-center gap-1.5 cursor-pointer"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                AI CHAT
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+              </button>
+            )}
           </nav>
 
           {/* Right Action */}
